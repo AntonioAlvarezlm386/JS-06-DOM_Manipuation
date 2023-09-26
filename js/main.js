@@ -74,7 +74,7 @@ users.forEach(user => {
 
 
 
-/**Ejercicio 2
+/**Ejercicio 2 -------------------------------------------------------------------------------------------------------------
  * Formulario de registro de usuarios
  */
 
@@ -86,11 +86,11 @@ let inputName = document.getElementById('nameInput');
 let inputAge = document.getElementById('ageInput');
 let inputDesc = document.getElementById('description');
 
+/**Agrega y muestra los datos del nuevo usuario a partir de un evento */
 registerBtn.addEventListener('click', () => {
-    let data = registerUsers(inputName, inputAge, inputDesc);
-    let form = newHtmlUserCard(data);
-    let userCard = displayUser(form);
-    newUsersContainer.append(userCard);
+    registerUsers(inputName, inputAge, inputDesc);
+    let form = newHtmlUserCard(registeredUsers[registeredUsers.length - 1]);
+    newUsersContainer.append(form);
 });
 
 /**CREA UN USUARIO NUEVO Y LO GUARDA */
@@ -101,26 +101,24 @@ function registerUsers(name, age, description){
         description : description.value,
     };
     registeredUsers.push(newUser);
-    inputName.value = inputAge.value = inputDesc.value = '';
-    return newUser;
+    name.value = age.value = description.value = '';
 };
 
+/**Crea la ña tarjeta donde se mostrara el nuevo usuario */
 function newHtmlUserCard(userData){
-    let htmlCardStructure = {
+    const card = document.createElement('div');
+    card.classList.add('profile', 'container');
+    
+    let htmlCard = {
         username : document.createElement('h2'),
         age : document.createElement('h3'),
         description : document.createElement('p'),
     };
-    htmlCardStructure.username.textContent = userData.name;
-    htmlCardStructure.age.textContent = userData.age;
-    htmlCardStructure.description.textContent = userData.description;
 
-    return htmlCardStructure;
-}
+    htmlCard.username.textContent = userData.name;
+    htmlCard.age.textContent = userData.age;
+    htmlCard.description.textContent = userData.description;
 
-function displayUser(htmlForm){
-    const card = document.createElement('div');
-    card.classList.add('profile', 'container');
-    card.append(htmlForm.username, htmlForm.age, htmlForm.description);
+    card.append(htmlCard.username, htmlCard.age, htmlCard.description);
     return card;
-}
+};
