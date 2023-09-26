@@ -7,7 +7,19 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div class="perfiles container" id="perfiles"></div>
+    <div class="container">
+        <label for="nameInput">Nombre</label>
+        <input type="text" id="nameInput" value="" required>
+        <label for="ageInput">Edad</label>
+        <input type="number" id="ageInput" value="" required>
+        <label for="description">Descripción</label>
+        <input class='input--desc' type="text" id="description" value="" required>
+        <button id="registeredBtn">Agregar usuario</button>
+    </div>
+
+    <div class="container" id="perfiles"></div>
+    <div class="container" id="newUsers"></div>
+
 
 
     <script src="./js/main.js"></script>

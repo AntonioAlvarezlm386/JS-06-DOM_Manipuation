@@ -70,3 +70,57 @@ users.forEach(user => {
 
     profilesContainer.append(profileCard);
 })
+
+
+
+
+/**Ejercicio 2
+ * Formulario de registro de usuarios
+ */
+
+let registeredUsers = [];
+
+const newUsersContainer = document.getElementById('newUsers');
+const registerBtn = document.getElementById('registeredBtn');
+let inputName = document.getElementById('nameInput');
+let inputAge = document.getElementById('ageInput');
+let inputDesc = document.getElementById('description');
+
+registerBtn.addEventListener('click', () => {
+    let data = registerUsers(inputName, inputAge, inputDesc);
+    let form = newHtmlUserCard(data);
+    let userCard = displayUser(form);
+    newUsersContainer.append(userCard);
+});
+
+/**CREA UN USUARIO NUEVO Y LO GUARDA */
+function registerUsers(name, age, description){
+    let newUser = {
+        name : name.value,
+        age : age.value,
+        description : description.value,
+    };
+    registeredUsers.push(newUser);
+    inputName.value = inputAge.value = inputDesc.value = '';
+    return newUser;
+};
+
+function newHtmlUserCard(userData){
+    let htmlCardStructure = {
+        username : document.createElement('h2'),
+        age : document.createElement('h3'),
+        description : document.createElement('p'),
+    };
+    htmlCardStructure.username.textContent = userData.name;
+    htmlCardStructure.age.textContent = userData.age;
+    htmlCardStructure.description.textContent = userData.description;
+
+    return htmlCardStructure;
+}
+
+function displayUser(htmlForm){
+    const card = document.createElement('div');
+    card.classList.add('profile', 'container');
+    card.append(htmlForm.username, htmlForm.age, htmlForm.description);
+    return card;
+}

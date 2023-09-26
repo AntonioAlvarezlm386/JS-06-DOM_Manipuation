@@ -10,13 +10,15 @@ button{
     color: #2b2a33;
     margin: 10px;
     border:  none;
-    width:  100px;
+    width:  150px;
     height: 30px;
     border-radius: 5px;
     cursor: pointer;
 }
 
+
 .container{
+    margin: 30px;
     display: flex;
     flex-direction:  column;
     justify-content: center;
