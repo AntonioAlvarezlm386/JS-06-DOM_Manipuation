@@ -82,20 +82,22 @@ let registeredUsers = [];
 
 const newUsersContainer = document.getElementById('newUsers');
 const registerBtn = document.getElementById('registeredBtn');
-let inputName = document.getElementById('nameInput');
-let inputAge = document.getElementById('ageInput');
-let inputDesc = document.getElementById('description');
+
+const inputName = document.getElementById('nameInput');
+const inputAge = document.getElementById('ageInput');
+const inputDesc = document.getElementById('description');
 
 /**Agrega y muestra los datos del nuevo usuario a partir de un evento */
 registerBtn.addEventListener('click', () => {
     registerUsers(inputName, inputAge, inputDesc);
-    let form = newHtmlUserCard(registeredUsers[registeredUsers.length - 1]);
+    const form = newHtmlUserCard(registeredUsers[registeredUsers.length - 1]);
     newUsersContainer.append(form);
 });
 
-/**CREA UN USUARIO NUEVO Y LO GUARDA */
+
+/**CREA UN USUARIO NUEVO Y LO GUARDA, LIMPIA EL FORMULARIO*/
 function registerUsers(name, age, description){
-    let newUser = {
+    const newUser = {
         name : name.value,
         age : age.value,
         description : description.value,
@@ -104,21 +106,25 @@ function registerUsers(name, age, description){
     name.value = age.value = description.value = '';
 };
 
-/**Crea la ña tarjeta donde se mostrara el nuevo usuario */
+
+/**Crea la la tarjeta donde se mostrara el nuevo usuario */
 function newHtmlUserCard(userData){
     const card = document.createElement('div');
     card.classList.add('profile', 'container');
     
-    let htmlCard = {
+    const htmlCard = {
         username : document.createElement('h2'),
         age : document.createElement('h3'),
         description : document.createElement('p'),
+        btn : document.createElement('button'),
     };
+    htmlCard.btn.setAttribute('id', 'rmbtn');
 
     htmlCard.username.textContent = userData.name;
     htmlCard.age.textContent = userData.age;
     htmlCard.description.textContent = userData.description;
+    htmlCard.btn.textContent = 'Eliminar usuario';
+    card.append(htmlCard.username, htmlCard.age, htmlCard.description, htmlCard.btn);
 
-    card.append(htmlCard.username, htmlCard.age, htmlCard.description);
     return card;
 };
